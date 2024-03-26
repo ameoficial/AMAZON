@@ -1,0 +1,874 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",(e=>{this.persisted=e.persisted})),window.addEventListener("DOMContentLoaded",(()=>{this._preconnect3rdParties()})),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){document.hidden?e._triggerListener():(this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventHandler,{passive:!0}))),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler))}_removeUserInteractionListener(){this.triggerEvents.forEach((e=>window.removeEventListener(e,this.userEventHandler,{passive:!0}))),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"))}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick")}_onTouchEnd(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach((e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))}))}_renameDOMAttribute(e,t,n){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(n,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((t=>{if(t.hasAttribute("src")){const n=new URL(t.src).origin;n!==location.origin&&e.push({src:n,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}})),e=[...new Map(e.map((e=>[JSON.stringify(e),e]))).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(e){}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._replayClicks()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._littleBreath(),new Promise((t=>{const n=document.createElement("script");[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t());try{e.parentNode.replaceChild(n,e)}catch(e){t()}}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var n=document.createDocumentFragment();e.forEach((e=>{if(e.src){const i=document.createElement("link");i.href=e.src,i.rel=t,"preconnect"!==t&&(i.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(i.crossOrigin=!0),e.crossOrigin&&(i.crossOrigin=e.crossOrigin),n.appendChild(i)}})),document.head.appendChild(n)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(i){e["rocket"+t]=n=i}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),await this._littleBreath();const e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,i=document.createRange(),r=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const s=document.createDocumentFragment();i.setStart(s,0),s.appendChild(i.createContextualFragment(t)),r.insertBefore(s,o)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise((e=>setTimeout(e))):new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+	
+		<title>Devolucoes eletrônicos – devolucoes-amaz.com</title>
+<meta name="robots" content="max-image-preview:large">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="alternate" type="application/rss+xml" title="Feed para devolucoes-amaz.com »" href="https://devolucoes-amaz.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Feed de comentários para devolucoes-amaz.com »" href="https://devolucoes-amaz.com/comments/feed/">
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/devolucoes-amaz.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.4.3"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<link rel="stylesheet" id="bootstrap-css" href="css/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="hestia-font-sizes-css" href="css/font-sizes.min.css" type="text/css" media="all">
+<style id="wp-emoji-styles-inline-css" type="text/css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<style id="classic-theme-styles-inline-css" type="text/css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id="global-styles-inline-css" type="text/css">
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--accent: #e91e63;--wp--preset--color--background-color: #E5E5E5;--wp--preset--color--header-gradient: #a81d84;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel="stylesheet" id="hestia_style-css" href="css/style.min.css" type="text/css" media="all">
+<style id="hestia_style-inline-css" type="text/css">
+.elementor-page .hestia-about>.container{width:100%}.elementor-page .pagebuilder-section{padding:0}.elementor-page .title-in-content,.elementor-page .image-in-page{display:none}.home.elementor-page .main-raised>section.hestia-about{overflow:visible}.elementor-editor-active .navbar{pointer-events:none}.elementor-editor-active #elementor.elementor-edit-mode .elementor-element-overlay{z-index:1000000}.elementor-page.page-template-template-fullwidth .blog-post-wrapper>.container{width:100%}.elementor-page.page-template-template-fullwidth .blog-post-wrapper>.container .col-md-12{padding:0}.elementor-page.page-template-template-fullwidth article.section{padding:0}.elementor-text-editor p,.elementor-text-editor h1,.elementor-text-editor h2,.elementor-text-editor h3,.elementor-text-editor h4,.elementor-text-editor h5,.elementor-text-editor h6{font-size:inherit}
+.hestia-top-bar,.hestia-top-bar .widget.widget_shopping_cart .cart_list{background-color:#363537}.hestia-top-bar .widget .label-floating input[type=search]:-webkit-autofill{-webkit-box-shadow:inset 0 0 0 9999px #363537}.hestia-top-bar,.hestia-top-bar .widget .label-floating input[type=search],.hestia-top-bar .widget.widget_search form.form-group:before,.hestia-top-bar .widget.widget_product_search form.form-group:before,.hestia-top-bar .widget.widget_shopping_cart:before{color:#fff}.hestia-top-bar .widget .label-floating input[type=search]{-webkit-text-fill-color:#fff !important}.hestia-top-bar div.widget.widget_shopping_cart:before,.hestia-top-bar .widget.widget_product_search form.form-group:before,.hestia-top-bar .widget.widget_search form.form-group:before{background-color:#fff}.hestia-top-bar a,.hestia-top-bar .top-bar-nav li a{color:#fff}.hestia-top-bar ul li a[href*="mailto:"]:before,.hestia-top-bar ul li a[href*="tel:"]:before{background-color:#fff}.hestia-top-bar a:hover,.hestia-top-bar .top-bar-nav li a:hover{color:#eee}.hestia-top-bar ul li:hover a[href*="mailto:"]:before,.hestia-top-bar ul li:hover a[href*="tel:"]:before{background-color:#eee}
+a,.navbar .dropdown-menu li:hover>a,.navbar .dropdown-menu li:focus>a,.navbar .dropdown-menu li:active>a,.navbar .navbar-nav>li .dropdown-menu li:hover>a,body:not(.home) .navbar-default .navbar-nav>.active:not(.btn)>a,body:not(.home) .navbar-default .navbar-nav>.active:not(.btn)>a:hover,body:not(.home) .navbar-default .navbar-nav>.active:not(.btn)>a:focus,a:hover,.card-blog a.moretag:hover,.card-blog a.more-link:hover,.widget a:hover,.has-text-color.has-accent-color,p.has-text-color a{color:#e91e63}.svg-text-color{fill:#e91e63}.pagination span.current,.pagination span.current:focus,.pagination span.current:hover{border-color:#e91e63}button,button:hover,.woocommerce .track_order button[type="submit"],.woocommerce .track_order button[type="submit"]:hover,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit:hover,input[type="button"],input[type="button"]:hover,input[type="submit"],input[type="submit"]:hover,input#searchsubmit,.pagination span.current,.pagination span.current:focus,.pagination span.current:hover,.btn.btn-primary,.btn.btn-primary:link,.btn.btn-primary:hover,.btn.btn-primary:focus,.btn.btn-primary:active,.btn.btn-primary.active,.btn.btn-primary.active:focus,.btn.btn-primary.active:hover,.btn.btn-primary:active:hover,.btn.btn-primary:active:focus,.btn.btn-primary:active:hover,.hestia-sidebar-open.btn.btn-rose,.hestia-sidebar-close.btn.btn-rose,.hestia-sidebar-open.btn.btn-rose:hover,.hestia-sidebar-close.btn.btn-rose:hover,.hestia-sidebar-open.btn.btn-rose:focus,.hestia-sidebar-close.btn.btn-rose:focus,.label.label-primary,.hestia-work .portfolio-item:nth-child(6n+1) .label,.nav-cart .nav-cart-content .widget .buttons .button,.has-accent-background-color[class*="has-background"]{background-color:#e91e63}@media(max-width:768px){.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus,.navbar .navbar-nav .dropdown .dropdown-menu li a:hover,.navbar .navbar-nav .dropdown .dropdown-menu li a:focus,.navbar button.navbar-toggle:hover,.navbar .navbar-nav li:hover>a i{color:#e91e63}}body:not(.woocommerce-page) button:not([class^="fl-"]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.close),body:not(.woocommerce-page) .button:not([class^="fl-"]):not(hestia-scroll-to-top):not(.navbar-toggle):not(.add_to_cart_button):not(.product_type_grouped):not(.product_type_external),div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,input[type="submit"],input[type="button"],.btn.btn-primary,.widget_product_search button[type="submit"],.hestia-sidebar-open.btn.btn-rose,.hestia-sidebar-close.btn.btn-rose,.everest-forms button[type=submit].everest-forms-submit-button{-webkit-box-shadow:0 2px 2px 0 rgba(233,30,99,0.14),0 3px 1px -2px rgba(233,30,99,0.2),0 1px 5px 0 rgba(233,30,99,0.12);box-shadow:0 2px 2px 0 rgba(233,30,99,0.14),0 3px 1px -2px rgba(233,30,99,0.2),0 1px 5px 0 rgba(233,30,99,0.12)}.card .header-primary,.card .content-primary,.everest-forms button[type=submit].everest-forms-submit-button{background:#e91e63}body:not(.woocommerce-page) .button:not([class^="fl-"]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.add_to_cart_button):hover,body:not(.woocommerce-page) button:not([class^="fl-"]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.close):hover,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit:hover,input[type="submit"]:hover,input[type="button"]:hover,input#searchsubmit:hover,.widget_product_search button[type="submit"]:hover,.pagination span.current,.btn.btn-primary:hover,.btn.btn-primary:focus,.btn.btn-primary:active,.btn.btn-primary.active,.btn.btn-primary:active:focus,.btn.btn-primary:active:hover,.hestia-sidebar-open.btn.btn-rose:hover,.hestia-sidebar-close.btn.btn-rose:hover,.pagination span.current:hover,.everest-forms button[type=submit].everest-forms-submit-button:hover,.everest-forms button[type=submit].everest-forms-submit-button:focus,.everest-forms button[type=submit].everest-forms-submit-button:active{-webkit-box-shadow:0 14px 26px -12px rgba(233,30,99,0.42),0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px rgba(233,30,99,0.2);box-shadow:0 14px 26px -12px rgba(233,30,99,0.42),0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px rgba(233,30,99,0.2);color:#fff}.form-group.is-focused .form-control{background-image:-webkit-gradient(linear,left top,left bottom,from(#e91e63),to(#e91e63)),-webkit-gradient(linear,left top,left bottom,from(#d2d2d2),to(#d2d2d2));background-image:-webkit-linear-gradient(linear,left top,left bottom,from(#e91e63),to(#e91e63)),-webkit-linear-gradient(linear,left top,left bottom,from(#d2d2d2),to(#d2d2d2));background-image:linear-gradient(linear,left top,left bottom,from(#e91e63),to(#e91e63)),linear-gradient(linear,left top,left bottom,from(#d2d2d2),to(#d2d2d2))}.navbar:not(.navbar-transparent) li:not(.btn):hover>a,.navbar li.on-section:not(.btn)>a,.navbar.full-screen-menu.navbar-transparent li:not(.btn):hover>a,.navbar.full-screen-menu .navbar-toggle:hover,.navbar:not(.navbar-transparent) .nav-cart:hover,.navbar:not(.navbar-transparent) .hestia-toggle-search:hover{color:#e91e63}.header-filter-gradient{background:linear-gradient(45deg,rgba(168,29,132,1) 0,rgb(234,57,111) 100%)}.has-text-color.has-header-gradient-color{color:#a81d84}.has-header-gradient-background-color[class*="has-background"]{background-color:#a81d84}.has-text-color.has-background-color-color{color:#E5E5E5}.has-background-color-background-color[class*="has-background"]{background-color:#E5E5E5}
+.btn.btn-primary:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item),input[type="submit"]:not(.search-submit),body:not(.woocommerce-account) .woocommerce .button.woocommerce-Button,.woocommerce .product button.button,.woocommerce .product button.button.alt,.woocommerce .product #respond input#submit,.woocommerce-cart .blog-post .woocommerce .cart-collaterals .cart_totals .checkout-button,.woocommerce-checkout #payment #place_order,.woocommerce-account.woocommerce-page button.button,.woocommerce .track_order button[type="submit"],.nav-cart .nav-cart-content .widget .buttons .button,.woocommerce a.button.wc-backward,body.woocommerce .wccm-catalog-item a.button,body.woocommerce a.wccm-button.button,form.woocommerce-form-coupon button.button,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,div.woocommerce a.button.alt,div.woocommerce table.my_account_orders .button,.btn.colored-button,.btn.btn-left,.btn.btn-right,.btn:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item):not(.hestia-sidebar-open):not(.hestia-sidebar-close){padding-top:15px;padding-bottom:15px;padding-left:33px;padding-right:33px}
+.btn.btn-primary:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item),input[type="submit"]:not(.search-submit),body:not(.woocommerce-account) .woocommerce .button.woocommerce-Button,.woocommerce .product button.button,.woocommerce .product button.button.alt,.woocommerce .product #respond input#submit,.woocommerce-cart .blog-post .woocommerce .cart-collaterals .cart_totals .checkout-button,.woocommerce-checkout #payment #place_order,.woocommerce-account.woocommerce-page button.button,.woocommerce .track_order button[type="submit"],.nav-cart .nav-cart-content .widget .buttons .button,.woocommerce a.button.wc-backward,body.woocommerce .wccm-catalog-item a.button,body.woocommerce a.wccm-button.button,form.woocommerce-form-coupon button.button,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,div.woocommerce a.button.alt,div.woocommerce table.my_account_orders .button,input[type="submit"].search-submit,.hestia-view-cart-wrapper .added_to_cart.wc-forward,.woocommerce-product-search button,.woocommerce-cart .actions .button,#secondary div[id^=woocommerce_price_filter] .button,.woocommerce div[id^=woocommerce_widget_cart].widget .buttons .button,.searchform input[type=submit],.searchform button,.search-form:not(.media-toolbar-primary) input[type=submit],.search-form:not(.media-toolbar-primary) button,.woocommerce-product-search input[type=submit],.btn.colored-button,.btn.btn-left,.btn.btn-right,.btn:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item):not(.hestia-sidebar-open):not(.hestia-sidebar-close){border-radius:3px}
+@media(min-width:769px){.page-header.header-small .hestia-title,.page-header.header-small .title,h1.hestia-title.title-in-content,.main article.section .has-title-font-size{font-size:42px}}
+</style>
+<link rel="stylesheet" id="hestia_fonts-css" href="https://fonts.googleapis.com/css?family=Roboto%3A300%2C400%2C500%2C700%7CRoboto+Slab%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=3.1.4" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-frontend-css" href="css/frontend-lite.min_1.css" type="text/css" media="all">
+<link data-minify="1" rel="stylesheet" id="swiper-css" href="css/swiper.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-post-15-css" href="css/post-15.css" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-pro-css" href="css/frontend-lite.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-global-css" href="css/global.css" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-post-16-css" href="css/post-16.css" type="text/css" media="all">
+<style id="rocket-lazyload-inline-css" type="text/css">
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:url(images/youtube.png) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}
+</style>
+<link rel="stylesheet" id="google-fonts-1-css" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=swap&amp;ver=6.4.3" type="text/css" media="all">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin=""><script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/jquery.min.js" id="jquery-core-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/jquery-migrate.min.js" id="jquery-migrate-js" defer=""></script>
+<link rel="https://api.w.org/" href="https://devolucoes-amaz.com/wp-json/"><link rel="alternate" type="application/json" href="https://devolucoes-amaz.com/wp-json/wp/v2/pages/16"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://devolucoes-amaz.com/xmlrpc.php?rsd">
+<meta name="generator" content="WordPress 6.4.3">
+<link rel="canonical" href="https://devolucoes-amaz.com/pvteste/">
+<link rel="shortlink" href="https://devolucoes-amaz.com/?p=16">
+<link rel="alternate" type="application/json+oembed" href="https://devolucoes-amaz.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdevolucoes-amaz.com%2Fpvteste%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://devolucoes-amaz.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdevolucoes-amaz.com%2Fpvteste%2F&amp;format=xml">
+<!-- HFCM by 99 Robots - Snippet # 1: google tag -->
+
+<!-- Google tag (gtag.js) -->
+<script type="rocketlazyloadscript" async="" src="https://www.googletagmanager.com/gtag/js?id=AW-16497183664"></script>
+<script type="rocketlazyloadscript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16497183664');
+</script>
+
+<!-- /end HFCM by 99 Robots -->
+<meta name="generator" content="Elementor 3.20.2; features: e_optimized_assets_loading, e_optimized_css_loading, e_font_icon_svg, additional_custom_breakpoints, block_editor_assets_optimize, e_image_loading_optimization; settings: css_print_method-external, google_font-enabled, font_display-swap">
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><link href="https://www.googletagmanager.com" rel="preconnect"></head>
+<body class="page-template page-template-elementor_canvas page page-id-16 blog-post header-layout-default elementor-default elementor-template-canvas elementor-kit-15 elementor-page elementor-page-16">
+			<div data-elementor-type="wp-post" data-elementor-id="16" class="elementor elementor-16" data-elementor-post-type="page">
+				<div class="elementor-element elementor-element-37a9449c elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="37a9449c" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-12178c24 elementor-widget elementor-widget-image" data-id="12178c24" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.20.0 - 20-03-2024 */
+.elementor-widget-image{text-align:center}.elementor-widget-image a{display:inline-block}.elementor-widget-image a img[src$=".svg"]{width:48px}.elementor-widget-image img{vertical-align:middle;display:inline-block}</style>										<img decoding="async" width="300" height="109" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20109'%3E%3C/svg%3E" class="attachment-medium size-medium wp-image-18" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo-300x109.webp 300w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo-768x280.webp 768w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo.webp 1024w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo-300x109.webp"><noscript><img decoding="async" width="300" height="109" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo-300x109.webp" class="attachment-medium size-medium wp-image-18" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo-300x109.webp 300w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo-768x280.webp 768w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo.webp 1024w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>													</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-261bf76f elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="261bf76f" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-22fc22f5 e-con-full e-flex e-con e-child" data-id="22fc22f5" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+				<div class="elementor-element elementor-element-7ed7c239 elementor-button-info elementor-widget elementor-widget-button" data-id="7ed7c239" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-size-sm" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">AMAZON BOXES</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-268a704d elementor-widget-mobile__width-initial elementor-widget elementor-widget-heading" data-id="268a704d" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.20.0 - 20-03-2024 */
+.elementor-heading-title{padding:0;margin:0;line-height:1}.elementor-widget-heading .elementor-heading-title[class*=elementor-size-]>a{color:inherit;font-size:inherit;line-height:inherit}.elementor-widget-heading .elementor-heading-title.elementor-size-small{font-size:15px}.elementor-widget-heading .elementor-heading-title.elementor-size-medium{font-size:19px}.elementor-widget-heading .elementor-heading-title.elementor-size-large{font-size:29px}.elementor-widget-heading .elementor-heading-title.elementor-size-xl{font-size:39px}.elementor-widget-heading .elementor-heading-title.elementor-size-xxl{font-size:59px}</style><h2 class="elementor-heading-title elementor-size-default">Ainda 
+dá Tempo</h2>		</div>
+				</div>
+		<div class="elementor-element elementor-element-31159d9a e-flex e-con-boxed e-con e-child" data-id="31159d9a" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-3e3f174e e-con-full e-flex e-con e-child" data-id="3e3f174e" data-element_type="container">
+				<div class="elementor-element elementor-element-2087945 elementor-widget elementor-widget-image" data-id="2087945" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="254" height="181" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20254%20181'%3E%3C/svg%3E" class="attachment-large size-large wp-image-19" alt="" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/delivery.png"><noscript><img decoding="async" width="254" height="181" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/delivery.png" class="attachment-large size-large wp-image-19" alt="" /></noscript>													</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-4af80e1f e-flex e-con-boxed e-con e-child" data-id="4af80e1f" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-28b2f559 elementor-widget elementor-widget-heading" data-id="28b2f559" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Frete GRÁTIS</h2>		</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-4220bb36 elementor-widget elementor-widget-button" data-id="4220bb36" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-sm" href="#options">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-24e5da60 e-con-full e-flex e-con e-child" data-id="24e5da60" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+				<div class="elementor-element elementor-element-7b376a4b elementor-widget elementor-widget-image" data-id="7b376a4b" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img fetchpriority="high" decoding="async" width="255" height="274" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20255%20274'%3E%3C/svg%3E" class="attachment-medium_large size-medium_large wp-image-20" alt="" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/header-image.webp"><noscript><img fetchpriority="high" decoding="async" width="255" height="274" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/header-image.webp" class="attachment-medium_large size-medium_large wp-image-20" alt="" /></noscript>													</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-50a08e5d elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="50a08e5d" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-3c36e143 elementor-widget elementor-widget-image-carousel" data-id="3c36e143" data-element_type="widget" data-settings="{" slides_to_show_mobile":"3","navigation":"none","image_spacing_custom_mobile":{"unit":"px","size":16,"sizes":[]},"autoplay":"yes","pause_on_hover":"yes","pause_on_interaction":"yes","autoplay_speed":5000,"infinite":"yes","speed":500,"image_spacing_custom":{"unit":"px","size":20,"sizes":[]},"image_spacing_custom_tablet":{"unit":"px","size":"","sizes":[]}}"="" data-widget_type="image-carousel.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.20.0 - 20-03-2024 */
+.elementor-widget-image-carousel .swiper,.elementor-widget-image-carousel .swiper-container{position:static}.elementor-widget-image-carousel .swiper-container .swiper-slide figure,.elementor-widget-image-carousel .swiper .swiper-slide figure{line-height:inherit}.elementor-widget-image-carousel .swiper-slide{text-align:center}.elementor-image-carousel-wrapper:not(.swiper-container-initialized):not(.swiper-initialized) .swiper-slide{max-width:calc(100% / var(--e-image-carousel-slides-to-show, 3))}</style>		<div class="elementor-image-carousel-wrapper swiper" dir="ltr">
+			<div class="elementor-image-carousel swiper-wrapper" aria-live="off">
+								<div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="1 de 3"><figure class="swiper-slide-inner"><img width="150" height="150" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" alt="Group-118.png" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-118-150x150.png"><noscript><img width="150" height="150" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-118-150x150.png" alt="Group-118.png" /></noscript></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="2 de 3"><figure class="swiper-slide-inner"><img width="150" height="150" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" alt="Group-119.png" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-119-150x150.png"><noscript><img width="150" height="150" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-119-150x150.png" alt="Group-119.png" /></noscript></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="3 de 3"><figure class="swiper-slide-inner"><img width="150" height="150" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" alt="Group-120.png" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-120-150x150.png"><noscript><img width="150" height="150" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-120-150x150.png" alt="Group-120.png" /></noscript></figure></div>			</div>
+							
+									</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-541fe2f2 elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="541fe2f2" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-1456ddcf elementor-widget elementor-widget-heading" data-id="1456ddcf" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Como funciona <span style="color:#F79B36; ">o leilão?</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-264f1561 elementor-widget elementor-widget-text-editor" data-id="264f1561" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.20.0 - 20-03-2024 */
+.elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap{background-color:#69727d;color:#fff}.elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap{color:#69727d;border:3px solid;background-color:transparent}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap{margin-top:8px}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter{width:1em;height:1em}.elementor-widget-text-editor .elementor-drop-cap{float:left;text-align:center;line-height:1;font-size:50px}.elementor-widget-text-editor .elementor-drop-cap-letter{display:inline-block}</style>				Todo ano a Amazon Recebe diversas devoluções de pedidos que não podem ser mais vendidos como novos. Por isso, são feitos leilões anuais de lotes para a venda desses produtos.						</div>
+				</div>
+				<div class="elementor-element elementor-element-4a8b98c8 elementor-widget elementor-widget-button" data-id="4a8b98c8" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-sm" href="#options">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-7383664 elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="7383664" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-0084a5c elementor-widget elementor-widget-heading" data-id="0084a5c" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Lotes montados com valor máximo <span style="color:#F79B36; ">de 9 mil reais.</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-6b69183 elementor-widget elementor-widget-text-editor" data-id="6b69183" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Iphones,Macbooks, Ipads, Fones e Diversos outros produtos com valores de até R$ 9.124,00 por caixa</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-8c67e5c elementor-mobile-align-right elementor-widget elementor-widget-button" data-id="8c67e5c" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-sm" href="#options">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-1b6a2ac7 elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="1b6a2ac7" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-2d9b46f7 elementor-widget-mobile__width-initial elementor-widget elementor-widget-heading" data-id="2d9b46f7" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Produtos originais 
+com <span style="color: #F79B36;">garantia Amazon</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-5e866b51 elementor-widget elementor-widget-text-editor" data-id="5e866b51" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							Todos os produtos possuem garantia Amazon de 1 ano, além da própria garantia de fábrica da marca.						</div>
+				</div>
+				<div class="elementor-element elementor-element-7db72cc0 elementor-widget elementor-widget-image-carousel" data-id="7db72cc0" data-element_type="widget" data-settings="{" slides_to_show_mobile":"1","navigation":"none","autoplay":"yes","pause_on_hover":"yes","pause_on_interaction":"yes","autoplay_speed":5000,"infinite":"yes","speed":500}"="" data-widget_type="image-carousel.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-image-carousel-wrapper swiper" dir="ltr">
+			<div class="elementor-image-carousel swiper-wrapper" aria-live="off">
+								<div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="1 de 5"><figure class="swiper-slide-inner"><img width="640" height="480" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20640%20480'%3E%3C/svg%3E" alt="sddefault.webp" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/sddefault.webp"><noscript><img width="640" height="480" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/sddefault.webp" alt="sddefault.webp" /></noscript></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="3 de 5"><figure class="swiper-slide-inner"><img width="612" height="320" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20612%20320'%3E%3C/svg%3E" alt="Group-180.jpg" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-180.jpg"><noscript><img width="612" height="320" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-180.jpg" alt="Group-180.jpg" /></noscript></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="5 de 5"><figure class="swiper-slide-inner"><img width="580" height="580" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20580%20580'%3E%3C/svg%3E" alt="sc-z2886-24__11_214b507f-b0ff-48e9-8929-e502c8743909_580x-1.webp" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/sc-z2886-24__11_214b507f-b0ff-48e9-8929-e502c8743909_580x-1.webp"><noscript><img width="580" height="580" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/sc-z2886-24__11_214b507f-b0ff-48e9-8929-e502c8743909_580x-1.webp" alt="sc-z2886-24__11_214b507f-b0ff-48e9-8929-e502c8743909_580x-1.webp" /></noscript></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="6 de 5"><figure class="swiper-slide-inner"><img width="259" height="194" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20259%20194'%3E%3C/svg%3E" alt="images.webp" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/images.webp"><noscript><img width="259" height="194" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/images.webp" alt="images.webp" /></noscript></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="7 de 5"><figure class="swiper-slide-inner"><img width="612" height="320" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20612%20320'%3E%3C/svg%3E" alt="Group-181.jpg" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-181.jpg"><noscript><img width="612" height="320" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-181.jpg" alt="Group-181.jpg" /></noscript></figure></div>			</div>
+							
+									</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-5026dc94 elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="5026dc94" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-14dc296e elementor-widget elementor-widget-image" data-id="14dc296e" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="750" height="188" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20750%20188'%3E%3C/svg%3E" class="attachment-medium_large size-medium_large wp-image-29" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-131-768x192.png 768w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-131-300x75.png 300w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-131.png 806w" data-lazy-sizes="(max-width: 750px) 100vw, 750px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-131-768x192.png"><noscript><img loading="lazy" decoding="async" width="750" height="188" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-131-768x192.png" class="attachment-medium_large size-medium_large wp-image-29" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-131-768x192.png 768w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-131-300x75.png 300w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-131.png 806w" sizes="(max-width: 750px) 100vw, 750px" /></noscript>													</div>
+				</div>
+				<div class="elementor-element elementor-element-605f4770 elementor-widget elementor-widget-image" data-id="605f4770" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="750" height="188" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20750%20188'%3E%3C/svg%3E" class="attachment-medium_large size-medium_large wp-image-30" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-130-768x192.png 768w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-130-300x75.png 300w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-130.png 806w" data-lazy-sizes="(max-width: 750px) 100vw, 750px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-130-768x192.png"><noscript><img loading="lazy" decoding="async" width="750" height="188" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-130-768x192.png" class="attachment-medium_large size-medium_large wp-image-30" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-130-768x192.png 768w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-130-300x75.png 300w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-130.png 806w" sizes="(max-width: 750px) 100vw, 750px" /></noscript>													</div>
+				</div>
+				<div class="elementor-element elementor-element-31f46705 elementor-widget elementor-widget-image" data-id="31f46705" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="750" height="188" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20750%20188'%3E%3C/svg%3E" class="attachment-medium_large size-medium_large wp-image-31" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-129-768x192.png 768w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-129-300x75.png 300w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-129.png 806w" data-lazy-sizes="(max-width: 750px) 100vw, 750px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-129-768x192.png"><noscript><img loading="lazy" decoding="async" width="750" height="188" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-129-768x192.png" class="attachment-medium_large size-medium_large wp-image-31" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-129-768x192.png 768w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-129-300x75.png 300w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-129.png 806w" sizes="(max-width: 750px) 100vw, 750px" /></noscript>													</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-4984b15e elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="4984b15e" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-63d9e4ce e-flex e-con-boxed e-con e-child" data-id="63d9e4ce" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-39a6d904 e-con-full e-flex e-con e-child" data-id="39a6d904" data-element_type="container">
+				<div class="elementor-element elementor-element-5c32a3d9 elementor-widget elementor-widget-image" data-id="5c32a3d9" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="256" height="256" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20256%20256'%3E%3C/svg%3E" class="attachment-large size-large wp-image-32" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee.png 256w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee-150x150.png 150w" data-lazy-sizes="(max-width: 256px) 100vw, 256px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee.png"><noscript><img loading="lazy" decoding="async" width="256" height="256" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee.png" class="attachment-large size-large wp-image-32" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee.png 256w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee-150x150.png 150w" sizes="(max-width: 256px) 100vw, 256px" /></noscript>													</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-4d70a6fe e-flex e-con-boxed e-con e-child" data-id="4d70a6fe" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-43eaf724 elementor-widget elementor-widget-heading" data-id="43eaf724" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Garantia de Recebimento</h2>		</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-633d6863 elementor-widget elementor-widget-text-editor" data-id="633d6863" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							Oferecemos a você uma garantia de recebimento oficial com seguro de entrega para roubos e extravios.						</div>
+				</div>
+				<div class="elementor-element elementor-element-715573d3 elementor-widget elementor-widget-button" data-id="715573d3" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-sm" href="#options">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-2712db66 elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="2712db66" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-3fc635aa e-con-full e-flex e-con e-child" data-id="3fc635aa" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+				<div class="elementor-element elementor-element-30b16418 elementor-widget elementor-widget-heading" data-id="30b16418" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">+ Bônus especial</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-15e605e9 elementor-widget-mobile__width-initial elementor-widget elementor-widget-heading" data-id="15e605e9" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">1 Ano de Prime video</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-4296f16a elementor-widget elementor-widget-text-editor" data-id="4296f16a" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							Somente essa semana comprando qualquer um dos lotes você ganha 1 ano de prime video de graça! Fazemos o cadastro em seu e-mail de compra e enviamos o acesso.						</div>
+				</div>
+				<div class="elementor-element elementor-element-6c0ed99a elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="6c0ed99a" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-md" href="#options">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Comprar agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-2d6e41e0 e-con-full e-flex e-con e-child" data-id="2d6e41e0" data-element_type="container">
+				<div class="elementor-element elementor-element-6a2f00fa elementor-widget elementor-widget-image" data-id="6a2f00fa" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="650" height="366" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20650%20366'%3E%3C/svg%3E" class="attachment-medium_large size-medium_large wp-image-33" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Taob2mjWZzUeNE5ctMCV6Z-650-80.jpg.webp 650w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Taob2mjWZzUeNE5ctMCV6Z-650-80.jpg-300x169.webp 300w" data-lazy-sizes="(max-width: 650px) 100vw, 650px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Taob2mjWZzUeNE5ctMCV6Z-650-80.jpg.webp"><noscript><img loading="lazy" decoding="async" width="650" height="366" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Taob2mjWZzUeNE5ctMCV6Z-650-80.jpg.webp" class="attachment-medium_large size-medium_large wp-image-33" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Taob2mjWZzUeNE5ctMCV6Z-650-80.jpg.webp 650w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Taob2mjWZzUeNE5ctMCV6Z-650-80.jpg-300x169.webp 300w" sizes="(max-width: 650px) 100vw, 650px" /></noscript>													</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-3464727c elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="3464727c" data-element_type="container" id="options" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-60e5b083 elementor-widget elementor-widget-heading" data-id="60e5b083" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Envio imediado</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-2548455d elementor-widget elementor-widget-heading" data-id="2548455d" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">+ Frete GRÁTIS</h2>		</div>
+				</div>
+		<div class="elementor-element elementor-element-2b2d2f0d e-flex e-con-boxed e-con e-child" data-id="2b2d2f0d" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-17c59132 e-flex e-con-boxed e-con e-child" data-id="17c59132" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-264d247f elementor-widget elementor-widget-image" data-id="264d247f" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img width="1024" height="373" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20373'%3E%3C/svg%3E" title="logo.webp" alt="logo.webp" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo.webp"><noscript><img width="1024" height="373" decoding="async" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo.webp" title="logo.webp" alt="logo.webp" loading="lazy" /></noscript>													</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-325794ab elementor-widget elementor-widget-image" data-id="325794ab" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="601" height="421" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20601%20421'%3E%3C/svg%3E" class="attachment-medium_large size-medium_large wp-image-34" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-177.webp 601w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-177-300x210.webp 300w" data-lazy-sizes="(max-width: 601px) 100vw, 601px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-177.webp"><noscript><img loading="lazy" decoding="async" width="601" height="421" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-177.webp" class="attachment-medium_large size-medium_large wp-image-34" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-177.webp 601w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-177-300x210.webp 300w" sizes="(max-width: 601px) 100vw, 601px" /></noscript>													</div>
+				</div>
+		<div class="elementor-element elementor-element-279d8c66 e-flex e-con-boxed e-con e-child" data-id="279d8c66" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-4ce085da e-flex e-con-boxed e-con e-child" data-id="4ce085da" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-787d78f elementor-widget elementor-widget-heading" data-id="787d78f" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">R$</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-35b805a2 elementor-widget elementor-widget-heading" data-id="35b805a2" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">137,00</h2>		</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-7a55463e elementor-widget elementor-widget-heading" data-id="7a55463e" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Ou 12x de R$12,25</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-73ff31fd elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="73ff31fd" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-sm" href="https://pay.amzonbrasil.com/BNjzgPOA0VRGM78?src=glead124234">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Comprar Agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-4186cefe e-flex e-con-boxed e-con e-child" data-id="4186cefe" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-642573a0 e-con-full e-flex e-con e-child" data-id="642573a0" data-element_type="container">
+				<div class="elementor-element elementor-element-2954fe6d elementor-widget elementor-widget-image" data-id="2954fe6d" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="254" height="181" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20254%20181'%3E%3C/svg%3E" class="attachment-large size-large wp-image-19" alt="" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/delivery.png"><noscript><img decoding="async" width="254" height="181" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/delivery.png" class="attachment-large size-large wp-image-19" alt="" /></noscript>													</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-1e3d2ac1 elementor-widget elementor-widget-heading" data-id="1e3d2ac1" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">FRETE <span style="color: #F79B36;">GRÁTIS</span> <span style="color: #00A2AE;">Prime</span></h2>		</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-5d417f6b e-flex e-con-boxed e-con e-child" data-id="5d417f6b" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-5f33285a e-flex e-con-boxed e-con e-child" data-id="5f33285a" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-71935648 elementor-widget elementor-widget-image" data-id="71935648" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img width="1024" height="373" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20373'%3E%3C/svg%3E" title="logo.webp" alt="logo.webp" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo.webp"><noscript><img width="1024" height="373" decoding="async" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo.webp" title="logo.webp" alt="logo.webp" loading="lazy" /></noscript>													</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-5f11224d elementor-widget elementor-widget-image" data-id="5f11224d" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="600" height="421" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20600%20421'%3E%3C/svg%3E" class="attachment-medium_large size-medium_large wp-image-35" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-178.webp 600w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-178-300x211.webp 300w" data-lazy-sizes="(max-width: 600px) 100vw, 600px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-178.webp"><noscript><img loading="lazy" decoding="async" width="600" height="421" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-178.webp" class="attachment-medium_large size-medium_large wp-image-35" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-178.webp 600w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-178-300x211.webp 300w" sizes="(max-width: 600px) 100vw, 600px" /></noscript>													</div>
+				</div>
+		<div class="elementor-element elementor-element-5e7f7d5e e-flex e-con-boxed e-con e-child" data-id="5e7f7d5e" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-4ea8ac2 e-flex e-con-boxed e-con e-child" data-id="4ea8ac2" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-677b6f08 elementor-widget elementor-widget-heading" data-id="677b6f08" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">R$</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-53e9c707 elementor-widget elementor-widget-heading" data-id="53e9c707" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">187,90</h2>		</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-e51bbb8 elementor-widget elementor-widget-heading" data-id="e51bbb8" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Ou 12x de R$16,25</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-74a57f8 elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="74a57f8" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-sm" href="https://pay.amzonbrasil.com/1VOvGVvOQq0GD62?src=glead124234">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Comprar Agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-6fe862fb e-flex e-con-boxed e-con e-child" data-id="6fe862fb" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-3afa6af5 e-con-full e-flex e-con e-child" data-id="3afa6af5" data-element_type="container">
+				<div class="elementor-element elementor-element-1866380b elementor-widget elementor-widget-image" data-id="1866380b" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="254" height="181" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20254%20181'%3E%3C/svg%3E" class="attachment-large size-large wp-image-19" alt="" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/delivery.png"><noscript><img decoding="async" width="254" height="181" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/delivery.png" class="attachment-large size-large wp-image-19" alt="" /></noscript>													</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-76c66df8 elementor-widget elementor-widget-heading" data-id="76c66df8" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">FRETE <span style="color: #F79B36;">GRÁTIS</span> <span style="color: #00A2AE;">Prime</span></h2>		</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-72a5a2d1 e-flex e-con-boxed e-con e-child" data-id="72a5a2d1" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-7a3321b9 e-flex e-con-boxed e-con e-child" data-id="7a3321b9" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-396c52e7 elementor-widget elementor-widget-image" data-id="396c52e7" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img width="1024" height="373" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20373'%3E%3C/svg%3E" title="logo.webp" alt="logo.webp" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo.webp"><noscript><img width="1024" height="373" decoding="async" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo.webp" title="logo.webp" alt="logo.webp" loading="lazy" /></noscript>													</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-636ff7a4 elementor-widget elementor-widget-image" data-id="636ff7a4" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="600" height="422" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20600%20422'%3E%3C/svg%3E" class="attachment-medium_large size-medium_large wp-image-36" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-179.webp 600w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-179-300x211.webp 300w" data-lazy-sizes="(max-width: 600px) 100vw, 600px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-179.webp"><noscript><img loading="lazy" decoding="async" width="600" height="422" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-179.webp" class="attachment-medium_large size-medium_large wp-image-36" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-179.webp 600w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-179-300x211.webp 300w" sizes="(max-width: 600px) 100vw, 600px" /></noscript>													</div>
+				</div>
+		<div class="elementor-element elementor-element-28a527a e-flex e-con-boxed e-con e-child" data-id="28a527a" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-2b96d717 e-flex e-con-boxed e-con e-child" data-id="2b96d717" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-7fdbc36f elementor-widget elementor-widget-heading" data-id="7fdbc36f" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">R$</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-5fd1b8c9 elementor-widget elementor-widget-heading" data-id="5fd1b8c9" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">217,00 </h2>		</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-6db05614 elementor-widget elementor-widget-heading" data-id="6db05614" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Ou 12x de R$18,08</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-71c6d184 elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="71c6d184" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-sm" href="https://pay.amzonbrasil.com/bz5KZbMEyxY37dL?src=glead124234">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Comprar Agora</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-29dd3261 e-flex e-con-boxed e-con e-child" data-id="29dd3261" data-element_type="container" data-settings="{" background_background":"classic"}"="">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-4ac9dc9b e-con-full e-flex e-con e-child" data-id="4ac9dc9b" data-element_type="container">
+				<div class="elementor-element elementor-element-32b8e1f0 elementor-widget elementor-widget-image" data-id="32b8e1f0" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="254" height="181" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20254%20181'%3E%3C/svg%3E" class="attachment-large size-large wp-image-19" alt="" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/delivery.png"><noscript><img decoding="async" width="254" height="181" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/delivery.png" class="attachment-large size-large wp-image-19" alt="" /></noscript>													</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-2c2ab7ea elementor-widget elementor-widget-heading" data-id="2c2ab7ea" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">FRETE <span style="color: #F79B36;">GRÁTIS</span> <span style="color: #00A2AE;">Prime</span></h2>		</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-4dba1c7d elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="4dba1c7d" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-79c2da40 elementor-widget elementor-widget-heading" data-id="79c2da40" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Avaliações dos clientes</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-55e10d83 elementor-pagination-position-outside elementor-widget elementor-widget-image-carousel" data-id="55e10d83" data-element_type="widget" data-settings="{" slides_to_show_mobile":"1","navigation":"dots","autoplay":"yes","pause_on_hover":"yes","pause_on_interaction":"yes","autoplay_speed":5000,"infinite":"yes","speed":500}"="" data-widget_type="image-carousel.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-image-carousel-wrapper swiper" dir="ltr">
+			<div class="elementor-image-carousel swiper-wrapper" aria-live="off">
+								<div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="1 de 3"><figure class="swiper-slide-inner"><img width="820" height="962" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20820%20962'%3E%3C/svg%3E" alt="Group-183.webp" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-183.webp"><noscript><img width="820" height="962" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-183.webp" alt="Group-183.webp" /></noscript></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="2 de 3"><figure class="swiper-slide-inner"><img width="820" height="962" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20820%20962'%3E%3C/svg%3E" alt="Group-182.webp" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-182.webp"><noscript><img width="820" height="962" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-182.webp" alt="Group-182.webp" /></noscript></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="3 de 3"><figure class="swiper-slide-inner"><img width="820" height="962" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20820%20962'%3E%3C/svg%3E" alt="Group-169.webp" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-169.webp"><noscript><img width="820" height="962" decoding="async" class="swiper-slide-image" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/Group-169.webp" alt="Group-169.webp" /></noscript></figure></div>			</div>
+							
+									<div class="swiper-pagination"></div>
+									</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-c3b8389 elementor-widget elementor-widget-spacer" data-id="c3b8389" data-element_type="widget" data-widget_type="spacer.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.20.0 - 20-03-2024 */
+.elementor-column .elementor-spacer-inner{height:var(--spacer-size)}.e-con{--container-widget-width:100%}.e-con-inner>.elementor-widget-spacer,.e-con>.elementor-widget-spacer{width:var(--container-widget-width,var(--spacer-size));--align-self:var(--container-widget-align-self,initial);--flex-shrink:0}.e-con-inner>.elementor-widget-spacer>.elementor-widget-container,.e-con>.elementor-widget-spacer>.elementor-widget-container{height:100%;width:100%}.e-con-inner>.elementor-widget-spacer>.elementor-widget-container>.elementor-spacer,.e-con>.elementor-widget-spacer>.elementor-widget-container>.elementor-spacer{height:100%}.e-con-inner>.elementor-widget-spacer>.elementor-widget-container>.elementor-spacer>.elementor-spacer-inner,.e-con>.elementor-widget-spacer>.elementor-widget-container>.elementor-spacer>.elementor-spacer-inner{height:var(--container-widget-height,var(--spacer-size))}.e-con-inner>.elementor-widget-spacer.elementor-widget-empty,.e-con>.elementor-widget-spacer.elementor-widget-empty{position:relative;min-height:22px;min-width:22px}.e-con-inner>.elementor-widget-spacer.elementor-widget-empty .elementor-widget-empty-icon,.e-con>.elementor-widget-spacer.elementor-widget-empty .elementor-widget-empty-icon{position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;padding:0;width:22px;height:22px}</style>		<div class="elementor-spacer">
+			<div class="elementor-spacer-inner"></div>
+		</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-4e3ccfc6 elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="4e3ccfc6" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-683f4155 elementor-widget elementor-widget-heading" data-id="683f4155" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">DÚVIDAS FREQUENTES
+</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-7d2d4197 elementor-widget elementor-widget-spacer" data-id="7d2d4197" data-element_type="widget" data-widget_type="spacer.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-spacer">
+			<div class="elementor-spacer-inner"></div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-1d94f581 elementor-widget elementor-widget-toggle" data-id="1d94f581" data-element_type="widget" data-widget_type="toggle.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.20.0 - 20-03-2024 */
+.elementor-toggle{text-align:left}.elementor-toggle .elementor-tab-title{font-weight:700;line-height:1;margin:0;padding:15px;border-bottom:1px solid #d5d8dc;cursor:pointer;outline:none}.elementor-toggle .elementor-tab-title .elementor-toggle-icon{display:inline-block;width:1em}.elementor-toggle .elementor-tab-title .elementor-toggle-icon svg{margin-inline-start:-5px;width:1em;height:1em}.elementor-toggle .elementor-tab-title .elementor-toggle-icon.elementor-toggle-icon-right{float:right;text-align:right}.elementor-toggle .elementor-tab-title .elementor-toggle-icon.elementor-toggle-icon-left{float:left;text-align:left}.elementor-toggle .elementor-tab-title .elementor-toggle-icon .elementor-toggle-icon-closed{display:block}.elementor-toggle .elementor-tab-title .elementor-toggle-icon .elementor-toggle-icon-opened{display:none}.elementor-toggle .elementor-tab-title.elementor-active{border-bottom:none}.elementor-toggle .elementor-tab-title.elementor-active .elementor-toggle-icon-closed{display:none}.elementor-toggle .elementor-tab-title.elementor-active .elementor-toggle-icon-opened{display:block}.elementor-toggle .elementor-tab-content{padding:15px;border-bottom:1px solid #d5d8dc;display:none}@media (max-width:767px){.elementor-toggle .elementor-tab-title{padding:12px}.elementor-toggle .elementor-tab-content{padding:12px 10px}}.e-con-inner>.elementor-widget-toggle,.e-con>.elementor-widget-toggle{width:var(--container-widget-width);--flex-grow:var(--container-widget-flex-grow)}</style>		<div class="elementor-toggle">
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-4961" class="elementor-tab-title" data-tab="1" role="button" aria-controls="elementor-tab-content-4961" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Como faço para acompanhar a entrega?</a>
+					</div>
+
+					<div id="elementor-tab-content-4961" class="elementor-tab-content elementor-clearfix" data-tab="1" role="region" aria-labelledby="elementor-tab-title-4961"><div class="elementor-toggle-item"><div id="elementor-tab-content-1051" class="elementor-tab-content elementor-clearfix elementor-active" role="region" data-tab="1" aria-labelledby="elementor-tab-title-1051"><p><span style="color: #ffffff;">Após a compra você receberá em seu email o código da postagem para rastrear seu pedido.</span></p></div></div></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-4962" class="elementor-tab-title" data-tab="2" role="button" aria-controls="elementor-tab-content-4962" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">O pagamento é seguro?</a>
+					</div>
+
+					<div id="elementor-tab-content-4962" class="elementor-tab-content elementor-clearfix" data-tab="2" role="region" aria-labelledby="elementor-tab-title-4962"><div class="elementor-toggle-item"><div id="elementor-tab-content-1052" class="elementor-tab-content elementor-clearfix elementor-active" role="region" data-tab="2" aria-labelledby="elementor-tab-title-1052"><p><span style="color: #ffffff;">Sim,o processamento e feito pela própria amazon com segurança. O�&nbsp;site é protegido por antivírus e criptografia de ponta a ponta!</span></p></div></div></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-4963" class="elementor-tab-title" data-tab="3" role="button" aria-controls="elementor-tab-content-4963" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">A  Amazon Boxes é entregue para todo o Brasil?</a>
+					</div>
+
+					<div id="elementor-tab-content-4963" class="elementor-tab-content elementor-clearfix" data-tab="3" role="region" aria-labelledby="elementor-tab-title-4963"><div class="elementor-toggle-item"><div id="elementor-tab-content-1053" class="elementor-tab-content elementor-clearfix elementor-active" role="region" data-tab="3" aria-labelledby="elementor-tab-title-1053"><p><span style="color: #ffffff;">Sim, entregamos para todo o País!</span></p></div></div></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-4964" class="elementor-tab-title" data-tab="4" role="button" aria-controls="elementor-tab-content-4964" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Quais produtos eu posso receber?</a>
+					</div>
+
+					<div id="elementor-tab-content-4964" class="elementor-tab-content elementor-clearfix" data-tab="4" role="region" aria-labelledby="elementor-tab-title-4964"><div class="elementor-toggle-item"><div id="elementor-tab-content-1054" class="elementor-tab-content elementor-clearfix elementor-active" role="region" data-tab="4" aria-labelledby="elementor-tab-title-1054"><p><span style="color: #ffffff;">Você pode receber Eletrônicos, como Aparelhos de Smartphones, Notebooks, Tablets, Headphones, Fones entre outras dezenas de produtos eletrônicos. Todos os produtos com valores maiores do que você pagou e nunca usados.</span></p></div></div></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-4965" class="elementor-tab-title" data-tab="5" role="button" aria-controls="elementor-tab-content-4965" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Quantos produtos vou receber?</a>
+					</div>
+
+					<div id="elementor-tab-content-4965" class="elementor-tab-content elementor-clearfix" data-tab="5" role="region" aria-labelledby="elementor-tab-title-4965"><p><span style="color: #ffffff;">Você pode escolher 3 opções de pacotes, o primeiro com 2 itens, o segundo com 2 até 5 itens e o terceiro com 2 até 10 itens.</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-4966" class="elementor-tab-title" data-tab="6" role="button" aria-controls="elementor-tab-content-4966" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Qual o prazo de entrega?</a>
+					</div>
+
+					<div id="elementor-tab-content-4966" class="elementor-tab-content elementor-clearfix" data-tab="6" role="region" aria-labelledby="elementor-tab-title-4966"><p><span style="color: #ffffff;">A entrega será realizada em até 7 dias úteis</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-4967" class="elementor-tab-title" data-tab="7" role="button" aria-controls="elementor-tab-content-4967" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Quanto tempo demora pra eu receber o código de rastreio?</a>
+					</div>
+
+					<div id="elementor-tab-content-4967" class="elementor-tab-content elementor-clearfix" data-tab="7" role="region" aria-labelledby="elementor-tab-title-4967"><p><span style="color: #ffffff;">O código de rastreio é liberado em até 5 dias úteis</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-4968" class="elementor-tab-title" data-tab="8" role="button" aria-controls="elementor-tab-content-4968" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">A postagem do produto é feita no mesmo dia?</a>
+					</div>
+
+					<div id="elementor-tab-content-4968" class="elementor-tab-content elementor-clearfix" data-tab="8" role="region" aria-labelledby="elementor-tab-title-4968"><p><span style="color: #ffffff;">Na maioria dos casos sim, porém pode levar até 3 dias úteis para ser postado</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-4969" class="elementor-tab-title" data-tab="9" role="button" aria-controls="elementor-tab-content-4969" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Politicas de reembolso</a>
+					</div>
+
+					<div id="elementor-tab-content-4969" class="elementor-tab-content elementor-clearfix" data-tab="9" role="region" aria-labelledby="elementor-tab-title-4969"><p><span style="color: #ffffff;">Reembolsamos valor integral caso aconteça algum erro na entrega ou o item venha danificado. Como não temos controle do conteúdo interno dos pacotes, dependendo do cenário do cliente o reembolso pode entrar em análise pela nossa equipe interna.</span></p></div>
+				</div>
+								</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-23c6a085 elementor-widget elementor-widget-spacer" data-id="23c6a085" data-element_type="widget" data-widget_type="spacer.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-spacer">
+			<div class="elementor-spacer-inner"></div>
+		</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-26c64f51 elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="26c64f51" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-e78ed0b e-flex e-con-boxed e-con e-child" data-id="e78ed0b" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-36c61834 e-con-full e-flex e-con e-child" data-id="36c61834" data-element_type="container">
+				<div class="elementor-element elementor-element-1d5681a9 elementor-widget elementor-widget-image" data-id="1d5681a9" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="256" height="256" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20256%20256'%3E%3C/svg%3E" class="attachment-large size-large wp-image-40" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/entrega-rapida-1.png 256w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/entrega-rapida-1-150x150.png 150w" data-lazy-sizes="(max-width: 256px) 100vw, 256px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/entrega-rapida-1.png"><noscript><img loading="lazy" decoding="async" width="256" height="256" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/entrega-rapida-1.png" class="attachment-large size-large wp-image-40" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/entrega-rapida-1.png 256w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/entrega-rapida-1-150x150.png 150w" sizes="(max-width: 256px) 100vw, 256px" /></noscript>													</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-7030554 elementor-widget elementor-widget-heading" data-id="7030554" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">1°�&nbsp;troca GRÁTIS</h2>		</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-35f3ed06 elementor-widget elementor-widget-text-editor" data-id="35f3ed06" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Na Amazon, a sua satisfação é a nossa prioridade número um. É por isso que estamos animados em oferecer a nossa incrível garantia de primeira troca grátis! Se por algum motivo você não estiver completamente satisfeito com os itens recebidos em sua Amazon Box, não se preocupe. Você pode solicitar novas caixas sem nenhum custo adicional ou burocracia.</p>						</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-5df6da48 elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="5df6da48" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-30117328 e-flex e-con-boxed e-con e-child" data-id="30117328" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-10ced65a e-con-full e-flex e-con e-child" data-id="10ced65a" data-element_type="container">
+				<div class="elementor-element elementor-element-d3d423e elementor-widget elementor-widget-image" data-id="d3d423e" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="256" height="256" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20256%20256'%3E%3C/svg%3E" class="attachment-large size-large wp-image-41" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/escudo-1.png 256w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/escudo-1-150x150.png 150w" data-lazy-sizes="(max-width: 256px) 100vw, 256px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/escudo-1.png"><noscript><img loading="lazy" decoding="async" width="256" height="256" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/escudo-1.png" class="attachment-large size-large wp-image-41" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/escudo-1.png 256w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/escudo-1-150x150.png 150w" sizes="(max-width: 256px) 100vw, 256px" /></noscript>													</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-3b934428 elementor-widget elementor-widget-heading" data-id="3b934428" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Garantia risco zero</h2>		</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-408f31be elementor-widget elementor-widget-text-editor" data-id="408f31be" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							Qualquer um dos produtos de nossos lotes possuem até 1 ano para troca e devolução, caso haja algum defeito ou mal funcionamento. Fora isso, você terá 30 dias para arrependimento da compra por lei.						</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-35519080 elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="35519080" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-3ef3fcc0 e-flex e-con-boxed e-con e-child" data-id="3ef3fcc0" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-257fdbd3 e-con-full e-flex e-con e-child" data-id="257fdbd3" data-element_type="container">
+				<div class="elementor-element elementor-element-507fa17a elementor-widget elementor-widget-image" data-id="507fa17a" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="256" height="256" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20256%20256'%3E%3C/svg%3E" class="attachment-large size-large wp-image-32" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee.png 256w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee-150x150.png 150w" data-lazy-sizes="(max-width: 256px) 100vw, 256px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee.png"><noscript><img loading="lazy" decoding="async" width="256" height="256" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee.png" class="attachment-large size-large wp-image-32" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee.png 256w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/guarantee-150x150.png 150w" sizes="(max-width: 256px) 100vw, 256px" /></noscript>													</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-158731a5 elementor-widget elementor-widget-heading" data-id="158731a5" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Pagamento e segurança</h2>		</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-23b00d68 elementor-widget elementor-widget-text-editor" data-id="23b00d68" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							Todos os pagamentos são efetuados com segurança criptografada livre de qualuqer fraude, além disso os pagamentos são efetuados somente pelo mercado pago.						</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-70c5fc22 elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="70c5fc22" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-3df273a6 elementor-widget elementor-widget-image" data-id="3df273a6" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img width="1024" height="373" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20373'%3E%3C/svg%3E" title="logo.webp" alt="logo.webp" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo.webp"><noscript><img width="1024" height="373" decoding="async" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/logo.webp" title="logo.webp" alt="logo.webp" loading="lazy" /></noscript>													</div>
+				</div>
+				<div class="elementor-element elementor-element-28adf69f elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="28adf69f" data-element_type="widget" data-widget_type="divider.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.20.0 - 20-03-2024 */
+.elementor-widget-divider{--divider-border-style:none;--divider-border-width:1px;--divider-color:#0c0d0e;--divider-icon-size:20px;--divider-element-spacing:10px;--divider-pattern-height:24px;--divider-pattern-size:20px;--divider-pattern-url:none;--divider-pattern-repeat:repeat-x}.elementor-widget-divider .elementor-divider{display:flex}.elementor-widget-divider .elementor-divider__text{font-size:15px;line-height:1;max-width:95%}.elementor-widget-divider .elementor-divider__element{margin:0 var(--divider-element-spacing);flex-shrink:0}.elementor-widget-divider .elementor-icon{font-size:var(--divider-icon-size)}.elementor-widget-divider .elementor-divider-separator{display:flex;margin:0;direction:ltr}.elementor-widget-divider--view-line_icon .elementor-divider-separator,.elementor-widget-divider--view-line_text .elementor-divider-separator{align-items:center}.elementor-widget-divider--view-line_icon .elementor-divider-separator:after,.elementor-widget-divider--view-line_icon .elementor-divider-separator:before,.elementor-widget-divider--view-line_text .elementor-divider-separator:after,.elementor-widget-divider--view-line_text .elementor-divider-separator:before{display:block;content:"";border-block-end:0;flex-grow:1;border-block-start:var(--divider-border-width) var(--divider-border-style) var(--divider-color)}.elementor-widget-divider--element-align-left .elementor-divider .elementor-divider-separator>.elementor-divider__svg:first-of-type{flex-grow:0;flex-shrink:100}.elementor-widget-divider--element-align-left .elementor-divider-separator:before{content:none}.elementor-widget-divider--element-align-left .elementor-divider__element{margin-left:0}.elementor-widget-divider--element-align-right .elementor-divider .elementor-divider-separator>.elementor-divider__svg:last-of-type{flex-grow:0;flex-shrink:100}.elementor-widget-divider--element-align-right .elementor-divider-separator:after{content:none}.elementor-widget-divider--element-align-right .elementor-divider__element{margin-right:0}.elementor-widget-divider--element-align-start .elementor-divider .elementor-divider-separator>.elementor-divider__svg:first-of-type{flex-grow:0;flex-shrink:100}.elementor-widget-divider--element-align-start .elementor-divider-separator:before{content:none}.elementor-widget-divider--element-align-start .elementor-divider__element{margin-inline-start:0}.elementor-widget-divider--element-align-end .elementor-divider .elementor-divider-separator>.elementor-divider__svg:last-of-type{flex-grow:0;flex-shrink:100}.elementor-widget-divider--element-align-end .elementor-divider-separator:after{content:none}.elementor-widget-divider--element-align-end .elementor-divider__element{margin-inline-end:0}.elementor-widget-divider:not(.elementor-widget-divider--view-line_text):not(.elementor-widget-divider--view-line_icon) .elementor-divider-separator{border-block-start:var(--divider-border-width) var(--divider-border-style) var(--divider-color)}.elementor-widget-divider--separator-type-pattern{--divider-border-style:none}.elementor-widget-divider--separator-type-pattern.elementor-widget-divider--view-line .elementor-divider-separator,.elementor-widget-divider--separator-type-pattern:not(.elementor-widget-divider--view-line) .elementor-divider-separator:after,.elementor-widget-divider--separator-type-pattern:not(.elementor-widget-divider--view-line) .elementor-divider-separator:before,.elementor-widget-divider--separator-type-pattern:not([class*=elementor-widget-divider--view]) .elementor-divider-separator{width:100%;min-height:var(--divider-pattern-height);-webkit-mask-size:var(--divider-pattern-size) 100%;mask-size:var(--divider-pattern-size) 100%;-webkit-mask-repeat:var(--divider-pattern-repeat);mask-repeat:var(--divider-pattern-repeat);background-color:var(--divider-color);-webkit-mask-image:var(--divider-pattern-url);mask-image:var(--divider-pattern-url)}.elementor-widget-divider--no-spacing{--divider-pattern-size:auto}.elementor-widget-divider--bg-round{--divider-pattern-repeat:round}.rtl .elementor-widget-divider .elementor-divider__text{direction:rtl}.e-con-inner>.elementor-widget-divider,.e-con>.elementor-widget-divider{width:var(--container-widget-width,100%);--flex-grow:var(--container-widget-flex-grow)}</style>		<div class="elementor-divider">
+			<span class="elementor-divider-separator">
+						</span>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-7b9f1267 elementor-widget elementor-widget-heading" data-id="7b9f1267" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Todos os direitos reservados.</h2>		</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-1d8b12a9 e-con-full elementor-hidden-tablet elementor-hidden-mobile e-flex e-con e-parent" data-id="1d8b12a9" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+				<div class="elementor-element elementor-element-79c0646a elementor-widget elementor-widget-video" data-id="79c0646a" data-element_type="widget" data-settings="{" youtube_url":"https:\="" \="" youtu.be\="" 56ie2_j1iq4","video_type":"youtube","controls":"yes"}"="" data-widget_type="video.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.20.0 - 20-03-2024 */
+.elementor-widget-video .elementor-widget-container{overflow:hidden;transform:translateZ(0)}.elementor-widget-video .elementor-wrapper{aspect-ratio:var(--video-aspect-ratio)}.elementor-widget-video .elementor-wrapper iframe,.elementor-widget-video .elementor-wrapper video{height:100%;width:100%;display:flex;border:none;background-color:#000}@supports not (aspect-ratio:1/1){.elementor-widget-video .elementor-wrapper{position:relative;overflow:hidden;height:0;padding-bottom:calc(100% / var(--video-aspect-ratio))}.elementor-widget-video .elementor-wrapper iframe,.elementor-widget-video .elementor-wrapper video{position:absolute;top:0;right:0;bottom:0;left:0}}.elementor-widget-video .elementor-open-inline .elementor-custom-embed-image-overlay{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:50%}.elementor-widget-video .elementor-custom-embed-image-overlay{cursor:pointer;text-align:center}.elementor-widget-video .elementor-custom-embed-image-overlay:hover .elementor-custom-embed-play i{opacity:1}.elementor-widget-video .elementor-custom-embed-image-overlay img{display:block;width:100%;aspect-ratio:var(--video-aspect-ratio);-o-object-fit:cover;object-fit:cover;-o-object-position:center center;object-position:center center}@supports not (aspect-ratio:1/1){.elementor-widget-video .elementor-custom-embed-image-overlay{position:relative;overflow:hidden;height:0;padding-bottom:calc(100% / var(--video-aspect-ratio))}.elementor-widget-video .elementor-custom-embed-image-overlay img{position:absolute;top:0;right:0;bottom:0;left:0}}.elementor-widget-video .e-hosted-video .elementor-video{-o-object-fit:cover;object-fit:cover}.e-con-inner>.elementor-widget-video,.e-con>.elementor-widget-video{width:var(--container-widget-width);--flex-grow:var(--container-widget-flex-grow)}</style>		<div class="elementor-wrapper elementor-open-inline">
+			<div class="elementor-video"></div>		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-139dfd1 elementor-hidden-tablet elementor-hidden-mobile e-flex e-con-boxed e-con e-parent" data-id="139dfd1" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-312f96af e-con-full e-flex e-con e-child" data-id="312f96af" data-element_type="container">
+				<div class="elementor-element elementor-element-7aba3862 elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-image" data-id="7aba3862" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="655" height="681" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20655%20681'%3E%3C/svg%3E" class="attachment-large size-large wp-image-47" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/S02-ES-HOMEM-1.png 655w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/S02-ES-HOMEM-1-289x300.png 289w" data-lazy-sizes="(max-width: 655px) 100vw, 655px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/S02-ES-HOMEM-1.png"><noscript><img loading="lazy" decoding="async" width="655" height="681" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/S02-ES-HOMEM-1.png" class="attachment-large size-large wp-image-47" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/S02-ES-HOMEM-1.png 655w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/S02-ES-HOMEM-1-289x300.png 289w" sizes="(max-width: 655px) 100vw, 655px" /></noscript>													</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-7ecbec06 e-con-full e-flex e-con e-child" data-id="7ecbec06" data-element_type="container">
+				<div class="elementor-element elementor-element-ea8aee1 elementor-widget elementor-widget-text-editor" data-id="ea8aee1" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-6f48a9a elementor-widget__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" data-id="6f48a9a" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default"><span style="color: #e3e300;"><strong>O que é�&nbsp;</strong>Pacotes Premiados?</span></h2><div><span style="color: #e3e300;">�&nbsp;</span></div></div></div><div class="elementor-element elementor-element-34a5624 elementor-widget__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-text-editor" data-id="34a5624" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p><span style="color: #ffffff;">O Pacotes Premiados é uma</span>�&nbsp;<span style="color: #e3e300;"><strong>encomenda recheada de pacotes</strong></span>�&nbsp;<span style="color: #ffffff;">com a</span>�&nbsp;<strong><span style="color: #e3e300;">quantidade da sua preferência</span><span style="color: #ffffff;">,</span></strong><span style="color: #ffffff;">�&nbsp;onde estão presentes pacotes/itens que foram extraviados, esquecidos pelos proprietários e que nunca foram entregues!</span></p><p><span style="color: #ffffff;">Seu Pacote é montado a partir destes itens!</span><span style="color: #e3e300;">�&nbsp;<strong>contendo um valor máximo de 1 mil reais!</strong></span></p></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-40553bad elementor-align-center elementor-widget elementor-widget-button" data-id="40553bad" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-sm" href="#">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">QUERO ADQUIRIR AGORA</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-70aa3452 elementor-hidden-tablet elementor-hidden-mobile e-flex e-con-boxed e-con e-parent" data-id="70aa3452" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-2f829c1f elementor-widget elementor-widget-image" data-id="2f829c1f" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img decoding="async" width="750" height="301" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20750%20301'%3E%3C/svg%3E" class="attachment-large size-large wp-image-44" alt="" data-lazy-srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/vantagens-1024x411.jpg 1024w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/vantagens-300x120.jpg 300w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/vantagens-768x308.jpg 768w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/vantagens.jpg 1199w" data-lazy-sizes="(max-width: 750px) 100vw, 750px" data-lazy-src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/vantagens-1024x411.jpg"><noscript><img loading="lazy" decoding="async" width="750" height="301" src="https://devolucoes-amaz.com/wp-content/uploads/2024/03/vantagens-1024x411.jpg" class="attachment-large size-large wp-image-44" alt="" srcset="https://devolucoes-amaz.com/wp-content/uploads/2024/03/vantagens-1024x411.jpg 1024w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/vantagens-300x120.jpg 300w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/vantagens-768x308.jpg 768w, https://devolucoes-amaz.com/wp-content/uploads/2024/03/vantagens.jpg 1199w" sizes="(max-width: 750px) 100vw, 750px" /></noscript>													</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-5ed90401 elementor-hidden-tablet elementor-hidden-mobile e-flex e-con-boxed e-con e-parent" data-id="5ed90401" data-element_type="container" data-settings="{" background_background":"classic"}"="" data-core-v316-plus="true">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-ff2a7f8 elementor-widget elementor-widget-text-editor" data-id="ff2a7f8" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-2932760 elementor-widget elementor-widget-heading" data-id="2932760" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h6 class="elementor-heading-title elementor-size-default" style="text-align: center;"><span style="color: #ffffff;">© 2024 Pacotes Premiados – Todos os Direitos Reservados</span></h6><div style="text-align: left;"><span style="color: #ffffff;">�&nbsp;</span></div></div></div><div class="elementor-element elementor-element-799f51d elementor-widget elementor-widget-heading" data-id="799f51d" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h6 class="elementor-heading-title elementor-size-default" style="text-align: left;">�&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp;<span style="color: #ffffff;"><span style="text-decoration: underline;">Política de Privacidade�&nbsp;</span> �&nbsp;</span>�&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp; �&nbsp;<span style="text-decoration: underline; color: #ffffff;">Termos de uso</span></h6></div></div>						</div>
+				</div>
+					</div>
+				</div>
+				</div>
+		<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="rocket-browser-checker-js-after">
+/* <![CDATA[ */
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+/* ]]> */
+</script>
+<script type="text/javascript" id="rocket-preload-links-js-extra">
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/devolucoes-amaz.com","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="rocket-preload-links-js-after">
+/* <![CDATA[ */
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/comment-reply.min.js" id="comment-reply-js" async="async" data-wp-strategy="async"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/bootstrap.min.js" id="jquery-bootstrap-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/core.min.js" id="jquery-ui-core-js" defer=""></script>
+<script type="text/javascript" id="hestia_scripts-js-extra">
+/* <![CDATA[ */
+var requestpost = {"ajaxurl":"https:\/\/devolucoes-amaz.com\/wp-admin\/admin-ajax.php","disable_autoslide":"","masonry":""};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/script.min.js" id="hestia_scripts-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/webpack-pro.runtime.min.js" id="elementor-pro-webpack-runtime-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/webpack.runtime.min.js" id="elementor-webpack-runtime-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/frontend-modules.min.js" id="elementor-frontend-modules-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/wp-polyfill-inert.min.js" id="wp-polyfill-inert-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/regenerator-runtime.min.js" id="regenerator-runtime-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/wp-polyfill.min.js" id="wp-polyfill-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/hooks.min.js" id="wp-hooks-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/i18n.min.js" id="wp-i18n-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="wp-i18n-js-after">
+/* <![CDATA[ */
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="elementor-pro-frontend-js-before">
+/* <![CDATA[ */
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/devolucoes-amaz.com\/wp-admin\/admin-ajax.php","nonce":"deb6e5a3cb","urls":{"assets":"https:\/\/devolucoes-amaz.com\/wp-content\/plugins\/pro-elements\/assets\/","rest":"https:\/\/devolucoes-amaz.com\/wp-json\/"},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"}},"facebook_sdk":{"lang":"pt_BR","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/devolucoes-amaz.com\/wp-content\/plugins\/pro-elements\/modules\/lottie\/assets\/animations\/default.json"}};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/frontend.min.js" id="elementor-pro-frontend-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/waypoints.min.js" id="elementor-waypoints-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="elementor-frontend-js-before">
+/* <![CDATA[ */
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartilhar no Facebook","shareOnTwitter":"Compartilhar no Twitter","pinIt":"Fixar","download":"Baixar","downloadImage":"Baixar imagem","fullscreen":"Tela cheia","zoom":"Zoom","share":"Compartilhar","playVideo":"Reproduzir v\u00eddeo","previous":"Anterior","next":"Pr\u00f3ximo","close":"Fechar","a11yCarouselWrapperAriaLabel":"Carrossel | Rolagem horizontal: Setas para esquerda e direita","a11yCarouselPrevSlideMessage":"Slide anterior","a11yCarouselNextSlideMessage":"Pr\u00f3ximo slide","a11yCarouselFirstSlideMessage":"Este \u00e9 o primeiro slide","a11yCarouselLastSlideMessage":"Este \u00e9 o \u00faltimo slide","a11yCarouselPaginationBulletMessage":"Ir para o slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Dispositivos m\u00f3veis no modo retrato","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Dispositivos m\u00f3veis no modo paisagem","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet no modo retrato","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet no modo paisagem","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Notebook","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Tela ampla (widescreen)","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.20.2","is_static":false,"experimentalFeatures":{"e_optimized_assets_loading":true,"e_optimized_css_loading":true,"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"e_swiper_latest":true,"container_grid":true,"theme_builder_v2":true,"block_editor_assets_optimize":true,"ai-layout":true,"landing-pages":true,"e_image_loading_optimization":true,"page-transitions":true,"notes":true,"form-submissions":true,"e_scroll_snap":true},"urls":{"assets":"https:\/\/devolucoes-amaz.com\/wp-content\/plugins\/elementor\/assets\/"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":16,"title":"Devolucoes%20eletr%C3%B4nicos%20%E2%80%93%20devolucoes-amaz.com","excerpt":"","featuredImage":false}};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/frontend.min_1.js" id="elementor-frontend-js" defer=""></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="js/elements-handlers.min.js" id="pro-elements-handlers-js" defer=""></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async="" src="js/lazyload.min.js"></script><script>function lazyLoadThumb(e){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script>	<script>class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);</script>
+
+
+<span id="elementor-device-mode" class="elementor-screen-only"></span></body></html><!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1711161664 -->
